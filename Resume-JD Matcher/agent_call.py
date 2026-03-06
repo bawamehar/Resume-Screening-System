@@ -7,7 +7,7 @@ from pathlib import Path
 current_dir = Path(__file__).resolve().parent
 
 # Go up one level to find the .env file in the root directory
-env_path = current_dir.parent.parent / '.env'
+env_path = current_dir.parent / '.env'
 
 # This function will load all the variables from the .env file and will 
 # make them available in the os.environ dictionary (env variables)
@@ -19,8 +19,6 @@ if os.environ.get("OPENAI_API_KEY"):
 else:
     raise ValueError("OPENAI_API_KEY not found")
 
-
-from agent1 import get_parsed_data
 
 
 dummy_resume = """
@@ -134,12 +132,19 @@ Experience with Git/GitHub is a plus (or excitement to learn it quickly).
 
 """
 
+# Agent Imports
 
-# 1. Parse Resume
+from agents.parser_agent_1 import get_parsed_data
+from agents.matcher_agent_2 import get_match_results
+from core.utils import print_basic_report
+
+#Agent 1
+
+# Parse Resume
 print("Parsing Resume...")
 resume_json = get_parsed_data("Resume", dummy_resume)
 
-# 2. Parse JD
+# Parse JD
 print("Parsing JD...")
 jd_json = get_parsed_data("Job Description", dummy_jd)
 
@@ -148,3 +153,14 @@ print(resume_json.model_dump_json(indent=2))
 
 print("\n--- JD JSON ---")
 print(jd_json.model_dump_json(indent=2))
+
+
+#Agent 2
+
+# Run Agent 2
+match_output = get_match_results(resume_json, jd_json)
+
+# Print the report
+print_basic_report(match_output)
+
+

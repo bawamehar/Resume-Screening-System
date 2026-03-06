@@ -1,7 +1,7 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from models import ExtractedData
-from prompts import system_prompt, user_prompt
+from core.models import ExtractedData
+from core.prompts import system_prompt, user_prompt
 
 
 # Initialize the model once
