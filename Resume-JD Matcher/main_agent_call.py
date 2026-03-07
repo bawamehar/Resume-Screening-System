@@ -159,6 +159,7 @@ Experience with Git/GitHub is a plus (or excitement to learn it quickly).
 
 from graph import app
 from core.utils import print_basic_report
+from core.utils import print_ats_report
 
 
 def run_pipeline():
@@ -181,11 +182,16 @@ def run_pipeline():
     # This automatically runs Nodes in order
     final_state = app.invoke(initial_state)
 
-    # 4. Extract and print the results from the shared State
+    # Extract and print the results from the shared State
     if "match_results" in final_state:
         print_basic_report(final_state["match_results"])
     else:
         print("Error: Pipeline completed but match_results are missing.")
+
+    
+    # Print ATS Results (Agent 3)
+    if "ats_results" in final_state:
+        print_ats_report(final_state["ats_results"])
 
 
 

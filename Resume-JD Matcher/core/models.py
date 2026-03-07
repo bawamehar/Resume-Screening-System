@@ -40,6 +40,19 @@ class MatchResults(BaseModel):
     education_reasoning: str = Field(description="How the candidate's degree level and certifications match the JD requirements")
     
 
+class ATSIssue(BaseModel):
+    issue_type: str = Field(description="Category: e.g., 'Formatting', 'Keyword Gap', 'Header', 'font'")
+    description: str = Field(description="What is wrong?")
+    fix: str = Field(description="Exact steps to fix it (e.g., 'Move skills to a bulleted list')")
+
+class ATSResults(BaseModel):
+    ats_score: int = Field(description="0-100 score based on parsability and keyword density")
+    found_keywords: List[str] = Field(description="Primary JD keywords found in the resume")
+    missing_keywords: List[str] = Field(description="Primary or Secondary JD keywords missing from the resume")
+    formatting_warnings: List[ATSIssue] = Field(description="Layout or font or structure warnings")
+    overall_verdict: str = Field(description="Short summary: e.g., 'make some changes changes' or 'good to be submitted'")
+    
+
 # THE LANGGRAPH STATE ---
 class AgentState(TypedDict):
     """The shared clipboard for all agents."""
