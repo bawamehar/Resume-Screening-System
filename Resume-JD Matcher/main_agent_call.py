@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-
 # Get the path to the directory where agent_call.py is located
 current_dir = Path(__file__).resolve().parent
 
@@ -13,11 +12,6 @@ env_path = current_dir.parent / '.env'
 # make them available in the os.environ dictionary (env variables)
 #load_dotenv() 
 load_dotenv(dotenv_path=env_path)
-
-if os.environ.get("OPENAI_API_KEY"):
-    print("API KEY Variable exists")
-else:
-    raise ValueError("OPENAI_API_KEY not found")
 
 
 
@@ -134,33 +128,66 @@ Experience with Git/GitHub is a plus (or excitement to learn it quickly).
 
 # Agent Imports
 
-from agents.parser_agent_1 import get_parsed_data
-from agents.matcher_agent_2 import get_match_results
+# from agents.parser_agent_1 import get_parsed_data
+# from agents.matcher_agent_2 import get_match_results
+
+
+# #Agent 1
+
+# # Parse Resume
+# print("Parsing Resume...")
+# resume_json = get_parsed_data("Resume", dummy_resume)
+
+# # Parse JD
+# print("Parsing JD...")
+# jd_json = get_parsed_data("Job Description", dummy_jd)
+
+# print("--- RESUME JSON ---")
+# print(resume_json.model_dump_json(indent=2))
+
+# print("\n--- JD JSON ---")
+# print(jd_json.model_dump_json(indent=2))
+
+
+# #Agent 2
+# # Run Agent 2
+# match_output = get_match_results(resume_json, jd_json)
+
+# # Print the report
+# print_basic_report(match_output)
+
+
+from graph import app
 from core.utils import print_basic_report
 
-#Agent 1
 
-# Parse Resume
-print("Parsing Resume...")
-resume_json = get_parsed_data("Resume", dummy_resume)
+def run_pipeline():
+    """Orchestrates the agentic workflow via LangGraph."""
+    
+    if os.environ.get("OPENAI_API_KEY"):
+        print("API KEY Variable exists")
+    else:
+        raise ValueError("OPENAI_API_KEY not found")
 
-# Parse JD
-print("Parsing JD...")
-jd_json = get_parsed_data("Job Description", dummy_jd)
+    # The inputs  Graph needs to start
+    initial_state = {
+        "raw_resume": dummy_resume, 
+        "raw_jd": dummy_jd
+    }
 
-print("--- RESUME JSON ---")
-print(resume_json.model_dump_json(indent=2))
+    print("Starting LangGraph Workflow...")
+    
+    # Trigger the compiled Graph
+    # This automatically runs Nodes in order
+    final_state = app.invoke(initial_state)
 
-print("\n--- JD JSON ---")
-print(jd_json.model_dump_json(indent=2))
-
-
-#Agent 2
-
-# Run Agent 2
-match_output = get_match_results(resume_json, jd_json)
-
-# Print the report
-print_basic_report(match_output)
+    # 4. Extract and print the results from the shared State
+    if "match_results" in final_state:
+        print_basic_report(final_state["match_results"])
+    else:
+        print("Error: Pipeline completed but match_results are missing.")
 
 
+
+if __name__ == "__main__":
+    run_pipeline()

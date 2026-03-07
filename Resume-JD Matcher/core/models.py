@@ -1,5 +1,9 @@
-from typing import List, Optional
+from typing import List, Optional, TypedDict
 from pydantic import BaseModel, Field
+
+
+
+
 
 # Skills Template
 class Skill(BaseModel):
@@ -36,3 +40,12 @@ class MatchResults(BaseModel):
     education_reasoning: str = Field(description="How the candidate's degree level and certifications match the JD requirements")
     
 
+# THE LANGGRAPH STATE ---
+class AgentState(TypedDict):
+    """The shared clipboard for all agents."""
+    raw_resume: str
+    raw_jd: str
+    resume_obj: Optional[ExtractedData] # This will hold ExtractedData
+    jd_obj: Optional[ExtractedData]
+    match_results: Optional[MatchResults] # This will hold MatchResults
+    ats_results: Optional[dict]        # Placeholder for Agent 3
