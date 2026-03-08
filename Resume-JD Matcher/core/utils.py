@@ -1,6 +1,6 @@
 # utils.py needs to import blueprint (MatchResults) so it knows 
 # #exactly what fields it is allowed to print
-from core.models import MatchResults, ATSResults
+from core.models import MatchResults, ATSResults, CoachResults
 
 
 def print_basic_report(results: MatchResults):
@@ -40,3 +40,38 @@ def print_ats_report(results: ATSResults):
     else:
         print("No major formatting risks detected.")
 
+
+def print_coach_report(results: CoachResults):
+    print("="*60)
+    print("🚀 JOB APPLICATION STRATEGY GUIDE")
+    print("="*60)
+
+    # 1. Resume Enhancements
+    print("\n📝 SECTION 1: RESUME ENHANCEMENTS (STAR METHOD)")
+    print("-" * 45)
+    for i, bullet in enumerate(results.top_3_bullets, 1):
+        print(f"\n💡 Suggestion {i}:")
+        print(f"   [Context]: {bullet.original_context}")
+        print(f"   [Modified]: {bullet.suggested_bullet}")
+        print(f"   [Why]: {bullet.reasoning}")
+
+    # 2. ATS Optimization
+    print("\n🤖 SECTION 2: ATS QUICK FIXES")
+    print("-" * 45)
+    if results.ats_strategy_points:
+        for point in results.ats_strategy_points:
+            print(f"• {point}")
+    else:
+        print("No specific ATS formatting changes required.")
+
+    # 3. Interview Preparation
+    print("\n🎤 SECTION 3: TAILORED INTERVIEW PREP")
+    print("-" * 45)
+    for i, qa in enumerate(results.interview_q_and_a, 1):
+        print(f"\n❓ Question {i}: {qa.question}")
+        print(f"   🎯 Intent: {qa.intent}")
+        print(f"   🛡️ Strategy: {qa.strategy}")
+
+    print("\n" + "="*60)
+    print(f"✨ FINAL NOTE: {results.final_encouragement}")
+    print("="*60)

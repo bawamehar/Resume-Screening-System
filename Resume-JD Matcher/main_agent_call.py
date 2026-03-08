@@ -158,8 +158,7 @@ Experience with Git/GitHub is a plus (or excitement to learn it quickly).
 
 
 from graph import app
-from core.utils import print_basic_report
-from core.utils import print_ats_report
+from core.utils import print_basic_report, print_coach_report, print_ats_report
 
 
 def run_pipeline():
@@ -192,7 +191,11 @@ def run_pipeline():
     # Print ATS Results (Agent 3)
     if "ats_results" in final_state:
         print_ats_report(final_state["ats_results"])
-
+    
+    
+    # Print Coach Results (Agent 4)
+    if "coach_results" in final_state and final_state["coach_results"]:
+        print_coach_report(final_state["coach_results"])
 
 
 if __name__ == "__main__":

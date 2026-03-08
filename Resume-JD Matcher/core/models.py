@@ -2,9 +2,6 @@ from typing import List, Optional, TypedDict
 from pydantic import BaseModel, Field
 
 
-
-
-
 # Skills Template
 class Skill(BaseModel):
     name: str = Field(description="Name of the skill (e.g. Python, SQL, Project Management)")
@@ -12,9 +9,17 @@ class Skill(BaseModel):
     years_of_experience: Optional[int] = Field(description="Years used, if mentioned")
     proficiency: str = Field(description="Level: Beginner, Intermediate, or Expert")
 
+class ContactInfo(BaseModel):
+    name: str = Field(description="Full name of the candidate")
+    email: str = Field(description="Professional email address")
+    phone: str = Field(description="Phone number with area code")
+    location: Optional[str] = Field(description="City and State/Country")
+    linkedin: Optional[str] = Field(description="URL to LinkedIn profile")
+    github: Optional[str] = Field(description="URL to GitHub or Portfolio")
+
 # Master Template
 class ExtractedData(BaseModel):
-
+    contact_info: ContactInfo = Field(description="Candidate's personal and contact details")
     job_title: str = Field(description="The formal job title found in the text")
     education: List[str] = Field(description="Degrees, majors, and universities attended")
     tools_and_platforms: List[str] = Field(description="Software, cloud providers, or tools (e.g. AWS, Jira, Tableau)")
@@ -51,6 +56,23 @@ class ATSResults(BaseModel):
     missing_keywords: List[str] = Field(description="Primary or Secondary JD keywords missing from the resume")
     formatting_warnings: List[ATSIssue] = Field(description="Layout or font or structure warnings")
     overall_verdict: str = Field(description="Short summary: e.g., 'make some changes changes' or 'good to be submitted'")
+
+class ResumeBullet(BaseModel):
+    original_context: str = Field(description="The existing bullet or project this relates to")
+    suggested_bullet: str = Field(description="The new or modified bullet point optimized for JD and ATS")
+    reasoning: str = Field(description="Why this change helps (e.g., 'Adds missing keyword')")
+
+class InterviewPrep(BaseModel):
+    question: str = Field(description="The interview question")
+    category: str = Field(description="Technical, Behavioral, or Domain-Specific")
+    intent: str = Field(description="What the recruiter is actually looking for")
+    strategy: str = Field(description="How to answer using any existing projects or in general approach")
+
+class CoachResults(BaseModel):
+    top_3_bullets: List[ResumeBullet] = Field(description="3 high-impact resume modifications")
+    ats_strategy_points: List[str] = Field(description="Specific steps to fix ATS warnings")
+    interview_q_and_a: List[InterviewPrep] = Field(description="3 tailored interview questions based on the JD that are most likely to be asked for this Job")
+    final_encouragement: str = Field(description="A brief professional closing note")
     
 
 # THE LANGGRAPH STATE ---
@@ -61,4 +83,5 @@ class AgentState(TypedDict):
     resume_obj: Optional[ExtractedData] # This will hold ExtractedData
     jd_obj: Optional[ExtractedData]
     match_results: Optional[MatchResults] # This will hold MatchResults
-    ats_results: Optional[dict]        # Placeholder for Agent 3
+    ats_results: Optional[ATSResults]        # Placeholder for Agent 3
+    coach_results: Optional[CoachResults]      # Placeholder for Agent 4
