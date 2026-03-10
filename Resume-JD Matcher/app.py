@@ -46,7 +46,7 @@ if st.button("Compare", type="primary"):
 
             with tab1:
                 target = final_state["jd_obj"].job_title
-                st.header(f"⚡ 1-Minute Action Plan for {target}")
+                st.header(f"1-Minute Action Plan for {target}")
                 st.markdown(format_action_plan(final_state))
                 
     else:
