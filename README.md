@@ -1,13 +1,13 @@
 # AI Resume-JD Matcher & Career Coach
 
-An industrial-grade, multi-agent system designed to bridge the gap between job seekers and Applicant Tracking Systems (ATS). Built with **LangGraph**, **OpenAI** and **Streamlit**, this tool provides deep technical analysis, ATS optimization, and strategic career coaching.
+An **Agentic AI** system built to match candidate profiles with complex Job Descriptions (JD). Leveraging **LangGraph** for stateful orchestration, **OpenAI** for high-reasoning extraction, and **Streamlit** for real-time visualization, this tool automates technical gap analysis, ATS compatibility auditing, and suggest resume reconstruction.
 
 ## Key Features
 
 - **Multi-Agent Orchestration**: Powered by LangGraph to manage state across four specialized AI agents.
 - **Precision Extraction**: Uses Pydantic-enforced schemas to parse complex Resume.
 - **ATS Intelligence**: Heuristic-based scoring for readability and keyword density.
-- **Actionable Coaching**: Gives resume key changes bullet points and tailored interview strategies.
+- **Actionable Coaching**: Suggest important changes in resume and tailored interview questions.
 - **Executive Summary**: A "1-Minute Action Plan" for rapid application optimization.
 
 ## System Architecture
