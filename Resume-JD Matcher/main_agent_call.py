@@ -4,13 +4,8 @@ from pathlib import Path
 
 
 current_dir = Path(__file__).resolve().parent
-
-# Go up one level to find the .env file in the root directory
 env_path = current_dir.parent / '.env'
 
-# This function will load all the variables from the .env file and will 
-# make them available in the os.environ dictionary (env variables)
-#load_dotenv() 
 load_dotenv(dotenv_path=env_path)
 
 
@@ -150,10 +145,8 @@ Experience with Git/GitHub is a plus (or excitement to learn it quickly).
 
 
 # #Agent 2
-# # Run Agent 2
-# match_output = get_match_results(resume_json, jd_json)
 
-# # Print the report
+# match_output = get_match_results(resume_json, jd_json)
 # print_basic_report(match_output)
 
 
@@ -162,14 +155,12 @@ from graph import app
 from core.utils import format_basic_report, format_ats_report, format_coach_report
 
 def run_pipeline():
-    """Orchestrates the agentic workflow via LangGraph."""
     
     if os.environ.get("OPENAI_API_KEY"):
         print("API KEY Variable exists")
     else:
         raise ValueError("OPENAI_API_KEY not found")
 
-    # The inputs  Graph needs to start
     initial_state = {
         "raw_resume": dummy_resume, 
         "raw_jd": dummy_jd
@@ -177,11 +168,8 @@ def run_pipeline():
 
     print("Starting LangGraph Workflow...")
     
-    # Trigger the compiled Graph
-    # This automatically runs Nodes in order
     final_state = app.invoke(initial_state)
 
-    # Extract and print the results from the shared State
     if "match_results" in final_state:
         #print_basic_report(final_state["match_results"])
         print(format_basic_report(final_state["match_results"]))
@@ -189,14 +177,14 @@ def run_pipeline():
         print("Error: Pipeline completed but match_results are missing.")
 
     
-    # Print ATS Results (Agent 3)
+    # Print ATS Results
     if "ats_results" in final_state:
         #print_ats_report(final_state["ats_results"])
         print("\n" + "="*20 + "\n")
         print(format_ats_report(final_state["ats_results"]))
     
     
-    # Print Coach Results (Agent 4)
+    # Print Coach Results
     if "coach_results" in final_state and final_state["coach_results"]:
         #print_coach_report(final_state["coach_results"])
         print("\n" + "="*20 + "\n")
