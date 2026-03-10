@@ -14,9 +14,10 @@ structured information with high precision.
    If a piece of info (like a certification) is missing, return an empty list.
 
 **Specific Extraction Rules**:
-   - CERTIFICATIONS: probably look at the end of the document. 
-   - EXPERIENCE: Calculate years based on the intro oparagraph mostly on the starting of the document or calculate based on dates (2020-2025 = 5 years). 
-   - SKILLS: See Skills section properly and extract all the skills for their.
+   - CERTIFICATIONS: Probably look at the end of the document. 
+   - EXPERIENCE: Calculate years based on the intro paragraph mostly on the starting of the document or calculate based on dates (2020-2025 = 5 years). 
+   - SKILLS: Thoroughly scan the 'Skills' and 'Technical Profile' sections to extract all relevant hard skills and tools.
+   - HEADER & CONTACT: Identify the candidate's name, email, phone number, and professional links (LinkedIn, GitHub). This is usually at the very top of the document.
 
 Extract the information into the required JSON format.
 """
