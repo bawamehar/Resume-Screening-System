@@ -1,6 +1,6 @@
 # AI Resume-JD Matcher & Career Coach
 
-An **Agentic AI** system built to match candidate profiles with complex Job Descriptions (JD). Leveraging **LangGraph** for stateful orchestration, **OpenAI** for high-reasoning extraction, and **Streamlit** for real-time visualization, this tool automates technical gap analysis, ATS compatibility auditing, and suggest resume reconstruction.
+An **Agentic AI** system built to match candidate profiles with complex Job Descriptions (JD). Leveraging **LangGraph** for stateful orchestration, **OpenAI** for high-reasoning extraction, and **Streamlit** for real-time visualization, this tool automates technical gap analysis, ATS compatibility auditing. The system is integrated with **LangSmith** for full-trace observability and performance monitoring, ensuring every agentic decision is transparent and optimized for suggested resume reconstruction.
 
 ## Key Features
 
@@ -30,6 +30,8 @@ The project follows a modular pipeline where each agent specializes in a specifi
 - Validation: Pydantic
 
 - Document Processing: PdfPlumber, Python-Docx
+
+- Performance Monitoring: LangSmith
 
 ## Getting Started
 
