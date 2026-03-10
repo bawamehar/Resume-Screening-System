@@ -1,0 +1,10 @@
+langchain
+langchain-openai
+langgraph
+pydantic
+python-dotenv
+streamlit
+pdfplumber
+python-docx
+fpdf2
+openai
