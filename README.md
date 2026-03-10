@@ -37,7 +37,6 @@ The project follows a modular pipeline where each agent specializes in a specifi
 Clone the repository and install the required dependencies:
 
 - git clone https://github.com/bawamehar/Resume-Screening-System.git
-
 - pip install -r requirements.txt
 
 2. **Environment Configuration:** 
@@ -49,7 +48,6 @@ Create a .env file in the root directory and add your credentials:
 Launch the Streamlit dashboard:
 
 - cd Resume-JD Matcher
-
 - streamlit run app.py
 
 ## Project Structure
