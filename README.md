@@ -25,27 +25,31 @@ Orchestration: LangChain & LangGraph
 
 UI Framework: Streamlit
 
-LLM: OpenAI GPT-4o / GPT-4o-mini
+LLM: OpenAI GPT-5-mini
 
-Validation: Pydantic v2
+Validation: Pydantic
 
 Document Processing: PdfPlumber, Python-Docx
 
 ## Getting Started
 
-1. **Installation**
-Clone the repository and install the required dependencies: 
-git clone [https://github.com/bawamehar/Resume-Screening-System.git]
+1. **Installation:** 
+Clone the repository and install the required dependencies:
+
+git clone https://github.com/bawamehar/Resume-Screening-System.git
+
 pip install -r requirements.txt
 
-2. **Environment Configuration**
+2. **Environment Configuration:** 
 Create a .env file in the root directory and add your credentials:
 OPENAI_API_KEY=your_openai_api_key_here
 
-3. **Execution**
+3. **Execution:** 
 Launch the Streamlit dashboard:
-cd Resume-JD Matcher
-streamlit run app.py
+
+- cd Resume-JD Matcher
+
+- streamlit run app.py
 
 ## Project Structure
 
@@ -57,10 +61,10 @@ streamlit run app.py
 ├── main_agent_call.py # CLI Testing Sandbox
 └── requirements.txt  # Dependencies
 
----
+```
 
 ![Dashboard Preview](dashboard.png)
-![Architecture Diagram](Architecture Diagram.png)
+![Architecture_Diagram](Architecture Diagram.png)
 ![Requirements File](requirements.txt)
 
 **Developed by Mehar Singh Bawa**
