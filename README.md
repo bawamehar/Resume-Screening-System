@@ -21,28 +21,29 @@ The project follows a modular pipeline where each agent specializes in a specifi
 
 ## Tech Stack
 
-Orchestration: LangChain & LangGraph
+- Orchestration: LangChain & LangGraph
 
-UI Framework: Streamlit
+- UI Framework: Streamlit
 
-LLM: OpenAI GPT-5-mini
+- LLM: OpenAI GPT-5-mini
 
-Validation: Pydantic
+- Validation: Pydantic
 
-Document Processing: PdfPlumber, Python-Docx
+- Document Processing: PdfPlumber, Python-Docx
 
 ## Getting Started
 
 1. **Installation:** 
 Clone the repository and install the required dependencies:
 
-git clone https://github.com/bawamehar/Resume-Screening-System.git
+- git clone https://github.com/bawamehar/Resume-Screening-System.git
 
-pip install -r requirements.txt
+- pip install -r requirements.txt
 
 2. **Environment Configuration:** 
 Create a .env file in the root directory and add your credentials:
-OPENAI_API_KEY=your_openai_api_key_here
+
+- OPENAI_API_KEY=your_openai_api_key_here
 
 3. **Execution:** 
 Launch the Streamlit dashboard:
@@ -60,11 +61,14 @@ Launch the Streamlit dashboard:
 ├── graph.py          # LangGraph Workflow Definition
 ├── main_agent_call.py # CLI Testing Sandbox
 └── requirements.txt  # Dependencies
-
 ```
-
+**UI**
 ![Dashboard Preview](dashboard.png)
-![Architecture_Diagram](Architecture Diagram.png)
+
+**Architecture Diagram**
+![Architecture Diagram](Architecture_Diagram.png)
+
+
 ![Requirements File](requirements.txt)
 
 **Developed by Mehar Singh Bawa**
