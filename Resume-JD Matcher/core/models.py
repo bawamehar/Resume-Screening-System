@@ -2,7 +2,6 @@ from typing import List, Optional, TypedDict
 from pydantic import BaseModel, Field
 
 
-# Skills Template
 class Skill(BaseModel):
     name: str = Field(description="Name of the skill (e.g. Python, SQL, Project Management)")
     context: str = Field(description="Briefly how/where it was used")
@@ -17,7 +16,7 @@ class ContactInfo(BaseModel):
     linkedin: Optional[str] = Field(description="URL to LinkedIn profile")
     github: Optional[str] = Field(description="URL to GitHub or Portfolio")
 
-# Master Template
+# main Template
 class ExtractedData(BaseModel):
     contact_info: ContactInfo = Field(description="Candidate's personal and contact details")
     job_title: str = Field(description="The formal job title found in the text")
@@ -29,7 +28,6 @@ class ExtractedData(BaseModel):
     total_years_experience: float = Field(description="Total years of work experience mentioned")
 
 
-# Agent 2: Match Result & missing skill Templates
 class MissingSkill(BaseModel):
     name: str = Field(description="Skill name found in JD but not in Resume")
     is_dealbreaker: bool = Field(description="True if listed in requirements or 'must haves', or mentioned multiple times, False if a 'plus', or 'good to have, etc'")
@@ -75,13 +73,12 @@ class CoachResults(BaseModel):
     final_encouragement: str = Field(description="A brief professional closing note")
     
 
-# THE LANGGRAPH STATE ---
+# THE LANGGRAPH STATE
 class AgentState(TypedDict):
-    """The shared clipboard for all agents."""
     raw_resume: str
     raw_jd: str
-    resume_obj: Optional[ExtractedData] # This will hold ExtractedData
+    resume_obj: Optional[ExtractedData] 
     jd_obj: Optional[ExtractedData]
-    match_results: Optional[MatchResults] # This will hold MatchResults
-    ats_results: Optional[ATSResults]        # Placeholder for Agent 3
-    coach_results: Optional[CoachResults]      # Placeholder for Agent 4
+    match_results: Optional[MatchResults] 
+    ats_results: Optional[ATSResults]     
+    coach_results: Optional[CoachResults]     

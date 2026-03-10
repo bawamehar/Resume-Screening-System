@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-# Get the path to the directory where agent_call.py is located
+
 current_dir = Path(__file__).resolve().parent
 
 # Go up one level to find the .env file in the root directory

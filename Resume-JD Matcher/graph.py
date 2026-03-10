@@ -6,7 +6,7 @@ from agents.ats_agent_3 import get_ats_results
 from agents.coach_agent_4 import get_coach_results
 
 
-# 1. Define the Nodes
+# Define the Nodes
 def node_parse_data(state: AgentState):
     """Agent 1: Logic"""
     res = get_parsed_data("Resume", state['raw_resume'])
@@ -25,7 +25,6 @@ def node_ats_audit(state: AgentState):
 
 def node_coach_strategy(state: AgentState):
     """Agent 4: Career Coach Synthesis"""
-    # Dynamically pull the job title from the parsed JD
     job_title = state["jd_obj"].job_title 
     
     results = get_coach_results(
@@ -36,7 +35,7 @@ def node_coach_strategy(state: AgentState):
     return {"coach_results": results}
 
 
-# 2. Build the Graph
+# Build the Graph
 workflow = StateGraph(AgentState)
 workflow.add_node("parser", node_parse_data)
 workflow.add_node("matcher", node_match_data)
@@ -44,7 +43,7 @@ workflow.add_node("ats_node", node_ats_audit)
 workflow.add_node("coach_node", node_coach_strategy)
 
 
-# 3. Define the Flow
+# Define the Flow
 workflow.set_entry_point("parser")
 workflow.add_edge("parser", "matcher")
 workflow.add_edge("matcher", "ats_node") 

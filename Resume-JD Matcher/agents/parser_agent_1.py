@@ -4,7 +4,6 @@ from core.models import ExtractedData
 from core.prompts import system_prompt, user_prompt
 
 
-# Initialize the model once
 # Setup the Agent 
 llm = ChatOpenAI(model="gpt-5-mini", temperature=0)
 
@@ -18,8 +17,7 @@ def get_parsed_data(doc_type, raw_text):
         ("user", user_prompt)
     ])
 
-    # 2. Chain them together
-    # This is the "LangChain" way: Prompt -> Model -> Structured Output
+    # Chain them together
     parser_chain = parser_prompt | parser_agent 
 
 

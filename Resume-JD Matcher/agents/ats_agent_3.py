@@ -8,7 +8,7 @@ ats_agent = llm.with_structured_output(ATSResults)
 
 
 def get_ats_results(resume_obj, jd_obj):
-    # .format() injects the data into the placeholders defined in prompts.py
+    # format func injects the data into the placeholders {} defined in prompts file
     user_content = ats_user_prompt.format(
         resume_json=resume_obj.model_dump_json(),
         jd_json=jd_obj.model_dump_json()
